@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bina Marga Sipil - Merawat Jalan dan Jembatan</title>
+<!-- Google Fonts: Hanken Grotesk, Inter, JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms & Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#ffffff",
+            "inverse-primary": "#aec6ff",
+            "secondary-fixed": "#ffddb8",
+            "on-background": "#0d1c2f",
+            "on-surface-variant": "#44474f",
+            "inverse-surface": "#233144",
+            "on-tertiary-fixed-variant": "#0039b5",
+            "secondary-fixed-dim": "#ffb95f",
+            "error": "#ba1a1a",
+            "surface-variant": "#d5e3fd",
+            "on-tertiary": "#ffffff",
+            "tertiary-fixed-dim": "#b7c4ff",
+            "secondary-container": "#fea619",
+            "on-tertiary-container": "#8da4ff",
+            "surface-dim": "#ccdbf4",
+            "surface-container-low": "#eff4ff",
+            "outline-variant": "#c4c6d1",
+            "surface-tint": "#425d95",
+            "surface-container-highest": "#d5e3fd",
+            "tertiary": "#001f6e",
+            "surface-container-high": "#dde9ff",
+            "inverse-on-surface": "#ebf1ff",
+            "on-primary-container": "#8da8e5",
+            "background": "#f8f9ff",
+            "secondary": "#855300",
+            "on-secondary-container": "#684000",
+            "primary-fixed": "#d8e2ff",
+            "on-surface": "#0d1c2f",
+            "on-secondary-fixed": "#2a1700",
+            "on-tertiary-fixed": "#001551",
+            "surface": "#f8f9ff",
+            "on-primary-fixed": "#001a42",
+            "primary-container": "#1e3c72",
+            "on-primary-fixed-variant": "#29457c",
+            "on-primary": "#ffffff",
+            "on-error": "#ffffff",
+            "primary": "#00255a",
+            "on-secondary-fixed-variant": "#653e00",
+            "error-container": "#ffdad6",
+            "tertiary-container": "#0031a0",
+            "on-error-container": "#93000a",
+            "outline": "#747781",
+            "on-secondary": "#ffffff",
+            "surface-bright": "#f8f9ff",
+            "tertiary-fixed": "#dce1ff",
+            "surface-container": "#e6eeff",
+            "primary-fixed-dim": "#aec6ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "space-xl": "2.5rem",
+            "margin-mobile": "1rem",
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "margin": "2rem",
+            "gutter-mobile": "1rem"
+          },
+          "fontFamily": {
+            "label-md": ["JetBrains Mono"],
+            "body-md": ["Inter"],
+            "headline-xl": ["Hanken Grotesk"],
+            "headline-lg": ["Hanken Grotesk"],
+            "body-sm": ["Inter"],
+            "headline-xl-mobile": ["Hanken Grotesk"],
+            "label-sm": ["JetBrains Mono"],
+            "headline-sm": ["Hanken Grotesk"],
+            "headline-lg-mobile": ["Hanken Grotesk"],
+            "body-lg": ["Inter"],
+            "headline-md": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-xl-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "800" }],
+            "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+            "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .technical-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 37, 90, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 37, 90, 0.04) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- ========================================================================= -->
+<!-- TopNavBar (Shared Component) -->
+<!-- ========================================================================= -->
+<header class="sticky top-0 z-50 bg-surface-container-lowest shadow-sm border-b border-outline-variant">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<!-- Logo / Brand Identifier -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-2xl" data-icon="construction">construction</span>
+</div>
+<div class="flex flex-col">
+<a class="text-headline-sm font-headline-sm font-bold text-primary tracking-tight" href="#">Bina Marga Sipil</a>
+<span class="text-label-sm font-label-sm text-outline tracking-wider">PORTAL PERAWATAN JALAN &amp; JEMBATAN</span>
+</div>
+</div>
+<!-- Navigation Links (Active item: Beranda) -->
+<nav class="hidden md:flex items-center gap-8 text-label-md font-label-md">
+<a class="border-b-2 border-primary text-primary font-bold pb-1 transition-all duration-150 ease-in-out active:scale-95" href="#beranda">Beranda</a>
+<a class="text-on-surface-variant hover:text-primary pb-1 transition-colors duration-150" href="#panduan-jalan">Panduan Jalan</a>
+<a class="text-on-surface-variant hover:text-primary pb-1 transition-colors duration-150" href="#panduan-jembatan">Panduan Jembatan</a>
+<a class="text-on-surface-variant hover:text-primary pb-1 transition-colors duration-150" href="#lapor-cepat">Lapor Kerusakan</a>
+<a class="text-on-surface-variant hover:text-primary pb-1 transition-colors duration-150" href="#edukasi-warga">Tips Warga</a>
+</nav>
+<!-- Trailing Action Buttons & System Icons -->
+<div class="flex items-center gap-3">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low hover:text-primary rounded-lg transition-colors duration-150" title="Notifikasi Siaga">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-low hover:text-primary rounded-lg transition-colors duration-150 hidden sm:inline-flex" title="Pusat Bantuan">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<a class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg border border-outline-variant text-primary hover:bg-surface-container-low transition-all duration-150 text-label-md font-label-md" href="tel:158">
+<span class="material-symbols-outlined text-secondary" data-icon="support_agent">support_agent</span>
+<span>Kontak Darurat</span>
+</a>
+<a class="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed transition-all duration-150 shadow-sm font-label-md text-label-md font-bold active:scale-95" href="#lapor-cepat">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+<span>Lapor Kerusakan</span>
+</a>
+</div>
+</div>
+</header>
+<!-- ========================================================================= -->
+<!-- HERO SECTION: Cadastral Engineering Aesthetic with Technical Grid -->
+<!-- ========================================================================= -->
+<section class="relative bg-surface-container-low border-b border-outline-variant overflow-hidden technical-grid py-16 md:py-24" id="beranda">
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="max-w-4xl mx-auto text-center space-y-6">
+<!-- Status Indicator Pill -->
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant shadow-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-600 animate-pulse"></span>
+<span class="text-label-sm font-label-sm text-primary uppercase tracking-wider">STANDAR INSPEKSI TEKNIS PU REPUBLIK INDONESIA</span>
+</div>
+<!-- Main Headline -->
+<h1 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl text-primary tracking-tight">
+          Merawat Jalan dan Jembatan: Investasi Bersama untuk Keselamatan dan Kelancaran Mobilitas Bangsa
+        </h1>
+<!-- Subheadline -->
+<p class="text-body-md md:text-body-lg font-body-lg text-on-surface-variant max-w-3xl mx-auto">
+          Inisiatif edukasi dan panduan praktis pemeliharaan preventif infrastruktur jalan dan jembatan bagi instansi pengelola, teknisi daerah, dan kepedulian aktif masyarakat luas.
+        </p>
+<!-- Search Bar with STA & Spec indexing capability -->
+<div class="pt-4 max-w-2xl mx-auto">
+<div class="relative flex items-center bg-surface-container-lowest rounded-xl border-2 border-outline-variant focus-within:border-primary-container focus-within:ring-4 focus-within:ring-primary/10 shadow-md transition-all p-1.5">
+<span class="material-symbols-outlined pl-3 pr-2 text-outline" data-icon="search">search</span>
+<input class="w-full bg-transparent border-0 focus:ring-0 text-on-surface text-body-md placeholder:text-outline font-body-md py-2" placeholder="Cari jenis kerusakan (misal: lubang jalan, retak buaya, expansion joint, sedimentasi drainase)..." type="text"/>
+<button class="px-5 py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md transition-all shrink-0">
+              Telusuri Panduan
+            </button>
+</div>
+<div class="flex flex-wrap items-center justify-center gap-2 mt-3 text-label-sm font-label-sm text-outline">
+<span>Pencarian Cepat:</span>
+<a class="px-2 py-0.5 rounded bg-surface-container-high hover:bg-surface-variant text-primary" href="#drainase">#Drainase</a>
+<a class="px-2 py-0.5 rounded bg-surface-container-high hover:bg-surface-variant text-primary" href="#pothole">#PotholePatching</a>
+<a class="px-2 py-0.5 rounded bg-surface-container-high hover:bg-surface-variant text-primary" href="#expansion-joint">#ExpansionJoint</a>
+<a class="px-2 py-0.5 rounded bg-surface-container-high hover:bg-surface-variant text-primary" href="#scour">#GerusanPilar</a>
+</div>
+</div>
+<!-- Quick Stat Badges -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-10 text-left">
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-outline-variant shadow-sm hover:border-primary-container transition-all">
+<div class="flex items-center justify-between text-primary mb-2">
+<span class="text-label-sm font-label-sm text-outline">JARINGAN JALAN</span>
+<span class="material-symbols-outlined" data-icon="route">route</span>
+</div>
+<div class="text-headline-md font-headline-md font-bold text-primary">48.000+ <span class="text-body-sm font-body-sm font-normal">km</span></div>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1">Jalan Nasional Terpetakan</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-outline-variant shadow-sm hover:border-primary-container transition-all">
+<div class="flex items-center justify-between text-primary mb-2">
+<span class="text-label-sm font-label-sm text-outline">INFRASTRUKTUR</span>
+<span class="material-symbols-outlined" data-icon="bridge">video_file</span>
+</div>
+<div class="text-headline-md font-headline-md font-bold text-primary">18.200+ <span class="text-body-sm font-body-sm font-normal">Unit</span></div>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1">Jembatan Terinspeksi Rutin</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-outline-variant shadow-sm hover:border-primary-container transition-all">
+<div class="flex items-center justify-between text-primary mb-2">
+<span class="text-label-sm font-label-sm text-outline">INDEKS KEMANTAPAN</span>
+<span class="material-symbols-outlined text-emerald-600" data-icon="verified">verified</span>
+</div>
+<div class="text-headline-md font-headline-md font-bold text-emerald-700">94.2%</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1">Tingkat Layanan Mantap</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-lowest border border-outline-variant shadow-sm hover:border-primary-container transition-all">
+<div class="flex items-center justify-between text-secondary mb-2">
+<span class="text-label-sm font-label-sm text-outline">UNIT REAKSI CEPAT</span>
+<span class="material-symbols-outlined" data-icon="alarm">alarm</span>
+</div>
+<div class="text-headline-md font-headline-md font-bold text-primary">24 / 7</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1">Layanan Aduan Siaga Banjir/Bencana</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- PILAR A: PANDUAN PERAWATAN JALAN BERKALA & RUTIN -->
+<!-- ========================================================================= -->
+<section class="py-16 md:py-20 bg-surface-container-lowest" id="panduan-jalan">
+<div class="max-w-7xl mx-auto px-6">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-outline-variant gap-4">
+<div>
+<div class="inline-flex items-center gap-2 text-label-sm font-label-sm text-primary mb-1">
+<span class="material-symbols-outlined text-sm" data-icon="alt_route">alt_route</span>
+<span>PILAR 01: TEKNIK PREVENTIF JALAN</span>
+</div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-primary tracking-tight">
+            Pemeliharaan Jalan Rutin &amp; Berkala
+          </h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">
+            Protokol pemeliharaan preventif untuk menjaga ketahanan struktur perkerasan aspal dan keselamatan pandang pengguna.
+          </p>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<span class="px-3 py-1 bg-surface-container-low text-primary rounded-lg text-label-sm font-label-sm border border-outline-variant">
+            Spesifikasi Umum Bina Marga Divisi 10
+          </span>
+</div>
+</div>
+<!-- Grid Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1: Drainase -->
+<div class="group bg-surface rounded-xl border border-outline-variant hover:border-primary-container hover:shadow-md transition-all flex flex-col overflow-hidden" id="drainase">
+<div class="relative h-44 bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A detailed engineering documentary photograph showing civil workers clearing mud and debris from concrete roadside drainage channels in bright overcast daylight. The workers wear high-visibility orange safety vests and industrial boots. The scene uses crisp slate grays, pristine safety yellow, and cool roadway asphalt tones in modern civic documentary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-2uAGZuAuYR9rscaEZf5J36oJxiE7Fjdq53GcdcH9y0pPL8vOnyzduWZkDITiLBoBV3EICRsW66pPuut3L4YUH7g1UWQWYNtdjLDnpYX-2u9GQjBHEZ5HrtVcuLFMfPuv7P7PdydBfimVIUo7H113SPCwfakR3ifkySP7if5uh3Odgl14rc8PREUflTTAaGhGJkKJzSkI9AXdU5pFAZJMcSoPFh-myoTwHSSRp5IUZYwQeR4tOer77Q"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded text-label-sm font-label-sm text-primary border border-outline-variant">
+              PRIORITAS UTAMA
+            </div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="text-label-sm font-label-sm text-secondary font-bold tracking-wider mb-1">DRAINASE PERMUKAAN</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Pembersihan Saluran Drainase</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                Air adalah musuh nomor satu perkerasan aspal. Normalisasi sedimen lumpur dan sampah mencegah genangan air yang melunakkan pondasi agregat jalan.
+              </p>
+</div>
+<div class="pt-4 mt-4 border-t border-outline-variant/60 flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Siklus: 2 Minggu Sekali</span>
+<span class="text-primary font-bold inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Prosedur <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Pothole & Crack -->
+<div class="group bg-surface rounded-xl border border-outline-variant hover:border-primary-container hover:shadow-md transition-all flex flex-col overflow-hidden" id="pothole">
+<div class="relative h-44 bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Close up technical civil engineering shot of asphalt road maintenance. A technician applies hot pour crack sealant and cold mix patch compaction into a clean rectangular cutout road surface. High-contrast textures of aggregate bitumen and clean geometric lines under clear daylight with safety cones in background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQXYVd_d7mjQkaUw83_FNtxSIlGA_F_Yb1_r8M-N04AE8Dg_mO9zJVrh_QuU8aCmatj70W2LarB0YWIxoajLiSYckv-Lm_0_IQdUwvl3tpw97VY3PxCQugmspJGLmCYdcmSa-MspZ6NOuJoOVAhaPpJW-lkgu6oNxtWr4K4FXMKVDS9kSfvWc0hX_8fet6ndA4ZjFzgcVMBMFMsKHurm4197lb2KJeeTdyZ7vMYtcWXebw3dlPIXxYLA"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded text-label-sm font-label-sm text-primary border border-outline-variant">
+              REAKSI CEPAT
+            </div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="text-label-sm font-label-sm text-secondary font-bold tracking-wider mb-1">PERKERASAN LENTUR</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Penambalan Lubang &amp; Penutupan Retak</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                Crack sealing mencegah rembesan air ke lapisan pondasi bawah. Penambalan lubang (patching) berbingkai persegi wajib dipadatkan dengan standar vibratory roller.
+              </p>
+</div>
+<div class="pt-4 mt-4 border-t border-outline-variant/60 flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Target: &lt; 24 Jam</span>
+<span class="text-primary font-bold inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Prosedur <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Card 3: ODOL -->
+<div class="group bg-surface rounded-xl border border-outline-variant hover:border-primary-container hover:shadow-md transition-all flex flex-col overflow-hidden">
+<div class="relative h-44 bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="An industrial weigh-in-motion highway weigh station facility. Heavy transport trucks pass through computerized weight sensors with LED inspection screens showing axle weight readouts. The atmosphere is official and structured, shot during bright daytime with safety barriers in blue and yellow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDId9c17d8xgvYuoBUI0P0WXcRCqtKAL2WUBtZq51NESlnING2HBowwCrW0yUJuDlRHXmqO0_p9QUkwqRIksdc1BGGfxi0hdjFh0pDTwtC13MARCIQ7o6kmqUOYgPbZx_61spnyAtpNALrTSQXZcrG1HQNasCgVXcFDCT75v-1kLe7uCNQgh_0g3Ch3LjfK4WjPGmSRlDzFCYO8VWYOC_Riu3sNJPApL31rBdPTDyDokE-B_9X_Oa32IQ"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded text-label-sm font-label-sm text-primary border border-outline-variant">
+              REGULASI STRUKTUR
+            </div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="text-label-sm font-label-sm text-secondary font-bold tracking-wider mb-1">BEBAN KANDAR SUMBU</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Pengendalian Muatan Berlebih (ODOL)</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                Truk bermuatan lebih dari MST 10 ton melipatgandakan eksponensial laju kerusakan permukaan jalan hingga 8x lipat, memicu alur roda (rutting) dan retak lelah dini.
+              </p>
+</div>
+<div class="pt-4 mt-4 border-t border-outline-variant/60 flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Operasi: Terpadu Jembatan Timbang</span>
+<span class="text-primary font-bold inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Prosedur <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Bahu Jalan -->
+<div class="group bg-surface rounded-xl border border-outline-variant hover:border-primary-container hover:shadow-md transition-all flex flex-col overflow-hidden">
+<div class="relative h-44 bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Highway road shoulder maintenance in a lush rural corridor. Highway workers trim overgrown brush and clear vegetative obstructions along white edge line markings, exposing safety guardrails and mile markers under pristine blue skies with bright lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLi0PzAa2YcCrlfotRSvGjIdkcT_rtWZYrEK8IVuM3VJaMX7dQvDvauPdji5N__HCZmsfwJN2l27_IYy7sEo7SFqMA8p2nclqa1V-k5axHxJ-SnpOtQfcXyvIodyop7v2cJ4li_6q0feEkMiBeAR6wlnK4jC48iKqcpcqkR1fInINbRrtau2zWSFfv8YVIrKLbj_LNexVnkHtswWzZ2hJCZ7ngRaEvnD_LfFwR41iUCt1ZaA_90o_nbg"/>
+<div class="absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-2.5 py-1 rounded text-label-sm font-label-sm text-primary border border-outline-variant">
+              VISIBILITAS KESELAMATAN
+            </div>
+</div>
+<div class="p-5 flex-1 flex flex-col justify-between">
+<div>
+<div class="text-label-sm font-label-sm text-secondary font-bold tracking-wider mb-1">RUANG MANFAAT JALAN</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Perawatan Bahu Jalan &amp; Rumput</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                Pemotongan rumput liar dan penataan kemiringan bahu jalan (grade 4-6%) menjamin visibilitas tikungan, aliran limpasan hujan, serta ruang henti darurat yang aman.
+              </p>
+</div>
+<div class="pt-4 mt-4 border-t border-outline-variant/60 flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-outline">Siklus: Bulanan</span>
+<span class="text-primary font-bold inline-flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Prosedur <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- PILAR B: PANDUAN KHUSUS PEMELIHARAAN JEMBATAN -->
+<!-- ========================================================================= -->
+<section class="py-16 md:py-20 bg-surface-container-low border-t border-b border-outline-variant" id="panduan-jembatan">
+<div class="max-w-7xl mx-auto px-6">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-outline-variant gap-4">
+<div>
+<div class="inline-flex items-center gap-2 text-label-sm font-label-sm text-primary mb-1">
+<span class="material-symbols-outlined text-sm" data-icon="architecture">architecture</span>
+<span>PILAR 02: TEKNOLOGI STRUKTUR JEMBATAN</span>
+</div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-primary tracking-tight">
+            Pemeliharaan Komponen Kritis Jembatan
+          </h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">
+            Panduan inspeksi mekanikal dan struktural jembatan bentang standar hingga jembatan pelengkung khusus.
+          </p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 bg-surface-container-lowest text-primary rounded-lg text-label-sm font-label-sm border border-outline-variant shadow-sm">
+            Manual BMS-1992 / Permen PU No. 10/PRT/M/2014
+          </span>
+</div>
+</div>
+<!-- Bento-style Technical Inspection Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Component 1: Expansion Joint -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:border-primary-container transition-all" id="expansion-joint">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container-high text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-2xl" data-icon="compress">compress</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 text-label-sm font-label-sm">KOMPONEN ATAS</span>
+<span class="text-label-sm font-label-sm text-outline">KODIFIKASI: EJ-01</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Sambungan Siar Muai (Expansion Joint)</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+              Pembersihan kerikil dan pasir pada celah sambungan karet neoprene atau modular strip. Kerikil yang terjepit mengunci muai-susut termal dan menghancurkan beton oprit jembatan saat suhu panas memuncak.
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant text-label-sm font-label-sm text-primary font-semibold flex items-center justify-between">
+<span>Toleransi Celah: ± 25-50 mm</span>
+<span class="material-symbols-outlined text-base" data-icon="straighten">straighten</span>
+</div>
+</div>
+<!-- Component 2: Elastomeric Bearings -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:border-primary-container transition-all">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container-high text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-2xl" data-icon="layers">layers</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-blue-50 text-primary border border-blue-200 text-label-sm font-label-sm">PERLETAKAN</span>
+<span class="text-label-sm font-label-sm text-outline">KODIFIKASI: EBP-02</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Bantalan Elastomerik (Bearing Pads)</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+              Inspeksi retak sobek, deformasi bulging berlebih, dan akumulasi kotoran pada bantalan karet berlapis baja penopang gelagar. Kebersihan dudukan mencegah konsentrasi tegangan geser yang fatal.
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant text-label-sm font-label-sm text-primary font-semibold flex items-center justify-between">
+<span>Cek Regangan Geser &lt; 0.5</span>
+<span class="material-symbols-outlined text-base" data-icon="safety_check">safety_check</span>
+</div>
+</div>
+<!-- Component 3: Steel Truss Rust Prevention -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:border-primary-container transition-all">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container-high text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-2xl" data-icon="shield">shield</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-red-50 text-error border border-red-200 text-label-sm font-label-sm">RANGKA BAJA</span>
+<span class="text-label-sm font-label-sm text-outline">KODIFIKASI: STR-03</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Proteksi Korosi Rangka &amp; Baut Baja</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+              Pembersihan kerak karat dengan blasting dan pelapisan ulang cat anti-korosi (epoxy zinc primer + polyurethane). Cek torsi kekencangan baut pengikat pelat sambungan (gusset plate) dari getaran dinamis.
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant text-label-sm font-label-sm text-primary font-semibold flex items-center justify-between">
+<span>Ketebalan Cat DFT &gt; 250 µm</span>
+<span class="material-symbols-outlined text-base" data-icon="format_paint">format_paint</span>
+</div>
+</div>
+<!-- Component 4: Scour Protection around Piers -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:border-primary-container transition-all" id="scour">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-container-high text-primary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-2xl" data-icon="tsunami">tsunami</span>
+</div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 text-label-sm font-label-sm">PONDASI BAWAH</span>
+<span class="text-label-sm font-label-sm text-outline">KODIFIKASI: PIER-04</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Pemantauan Gerusan Air (Scour Monitoring)</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed">
+              Pengukuran batimetri dasar sungai di sekitar pilar dan abutmen setelah banjir bandang. Pemasangan rip-rap batu gajah atau bronjong kawat untuk mencegah terpaparnya tiang pancang (undermining).
+            </p>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant text-label-sm font-label-sm text-primary font-semibold flex items-center justify-between">
+<span>Inspeksi Pasca Debit Puncak</span>
+<span class="material-symbols-outlined text-base" data-icon="waves">waves</span>
+</div>
+</div>
+</div>
+<!-- Technical Callout Strip -->
+<div class="mt-8 p-4 rounded-xl bg-primary text-on-primary flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-3xl text-secondary-container" data-icon="info">info</span>
+<p class="text-body-sm font-body-sm text-inverse-on-surface">
+<strong>Catatan Operasional Lapangan:</strong> Setiap retakan di atas 0.2 mm pada struktur beton prategang wajib dilaporkan langsung ke Tim Balai Besar Pelaksanaan Jalan Nasional (BBPJN).
+          </p>
+</div>
+<a class="px-4 py-2 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md font-bold shrink-0 hover:bg-surface-container-high transition-all" href="#lapor-cepat">
+          Unduh SOP Jembatan PDF
+        </a>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- INFOGRAFIS INTERAKTIF: SIKLUS KERUSAKAN & EFISIENSI ANGGARAN -->
+<!-- ========================================================================= -->
+<section class="py-16 md:py-20 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-6">
+<div class="max-w-3xl mb-12">
+<div class="inline-flex items-center gap-2 text-label-sm font-label-sm text-secondary font-bold mb-1">
+<span class="material-symbols-outlined text-sm" data-icon="monitoring">monitoring</span>
+<span>ANALISIS EKONOMI TEKNIK SIPIL</span>
+</div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-primary tracking-tight">
+          Siklus Kerusakan: Mengapa Pencegahan Dini Jauh Lebih Murah
+        </h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-2">
+          Mengabaikan retak rambut awal senilai ratusan ribu rupiah akan berkembang menjadi kerusakan struktural bernilai miliaran rupiah hanya dalam 2 hingga 3 musim hujan.
+        </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left: Visual Ratio Chart Card (7 cols) -->
+<div class="lg:col-span-7 bg-surface p-6 md:p-8 rounded-2xl border border-outline-variant shadow-sm space-y-6">
+<h3 class="text-headline-sm font-headline-sm text-primary">Rasio Perbandingan Biaya Pemeliharaan (Asset Life-Cycle)</h3>
+<!-- Stage 1 -->
+<div class="space-y-2">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="font-semibold text-primary">1. Pemeliharaan Rutin / Preventif (Tahun 1 - 3)</span>
+<span class="font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Indeks Biaya: Rp 1 (Baseline)</span>
+</div>
+<div class="w-full h-4 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-emerald-600 rounded-full w-[10%]"></div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Tindakan: Pembersihan got, sealing retak rambut, pemotongan semak, pengencangan baut jembatan.</p>
+</div>
+<!-- Stage 2 -->
+<div class="space-y-2">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="font-semibold text-primary">2. Pemeliharaan Berkala / Rehabilitasi Ringan (Tahun 4 - 6)</span>
+<span class="font-mono font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Indeks Biaya: Rp 3 - 4</span>
+</div>
+<div class="w-full h-4 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full w-[35%]"></div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Tindakan: Lapis ulang aspal (overlay 4 cm), penggantian seal siar muai, perbaikan pasangan batu saluran.</p>
+</div>
+<!-- Stage 3 -->
+<div class="space-y-2">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="font-semibold text-primary">3. Penanganan Darurat / Rekonstruksi Total (Tahun 7+)</span>
+<span class="font-mono font-bold text-error bg-red-50 px-2 py-0.5 rounded border border-red-200">Indeks Biaya: Rp 8 - 10</span>
+</div>
+<div class="w-full h-4 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full w-[95%]"></div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Tindakan: Bongkar pondasi agregat, pengerjaan ulang fondasi, penggantian girder jembatan yang deformasi plastis.</p>
+</div>
+<div class="p-4 bg-surface-container-high rounded-xl border border-surface-dim text-body-sm font-body-sm text-on-surface">
+<span class="font-bold text-primary">Pelajaran Utama:</span> Setiap Rp 1.000.000 yang dialokasikan tepat waktu pada pembersihan drainase dan penutupan retak dini menghemat hingga Rp 10.000.000 biaya rekonstruksi darurat di masa depan.
+          </div>
+</div>
+<!-- Right: 4-Step Citizen Inspection Checklist (5 cols) -->
+<div class="lg:col-span-5 bg-surface-container-low p-6 md:p-8 rounded-2xl border border-outline-variant shadow-sm space-y-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="checklist">checklist</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-primary">Checklist 4 Langkah Warga</h3>
+<p class="text-label-sm font-label-sm text-outline">Panduan Pemeriksaan Mandiri di Sekitar Lingkungan</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-start gap-3 bg-surface-container-lowest p-3.5 rounded-xl border border-outline-variant">
+<div class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-label-sm font-label-sm font-bold shrink-0 mt-0.5">1</div>
+<div>
+<h4 class="text-body-md font-body-md font-bold text-primary">Amati Genangan Pasca Hujan</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Apakah ada air menggenang lebih dari 2 jam di badan jalan? Cek bila tali air tersumbat sampah plastik.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-surface-container-lowest p-3.5 rounded-xl border border-outline-variant">
+<div class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-label-sm font-label-sm font-bold shrink-0 mt-0.5">2</div>
+<div>
+<h4 class="text-body-md font-body-md font-bold text-primary">Cek Pola Retak (Alligator Cracking)</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Identifikasi retakan yang menyerupai kulit buaya sebelum batu aspal terlepas menjadi lubang dalam.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-surface-container-lowest p-3.5 rounded-xl border border-outline-variant">
+<div class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-label-sm font-label-sm font-bold shrink-0 mt-0.5">3</div>
+<div>
+<h4 class="text-body-md font-body-md font-bold text-primary">Periksa Sambungan Oprit Jembatan</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Apakah ada lonjakan benturan kendaraan saat melintas masuk ke jembatan? Menandakan penurunan tanah timbunan.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 bg-surface-container-lowest p-3.5 rounded-xl border border-outline-variant">
+<div class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-label-sm font-label-sm font-bold shrink-0 mt-0.5">4</div>
+<div>
+<h4 class="text-body-md font-body-md font-bold text-primary">Deteksi Tumpukan Sampah di Kolong Jembatan</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Ranting kayu atau sampah yang tersangkut di pilar memicu pusaran air berbahaya yang menggerus dasar pondasi.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- AKSI CEPAT WARGA: CARA ANDA BERKONTRIBUSI & FORM LAPOR CEPAT -->
+<!-- ========================================================================= -->
+<section class="py-16 md:py-20 bg-surface-container-high border-t border-outline-variant" id="lapor-cepat">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center max-w-3xl mx-auto mb-12">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-lowest text-primary text-label-sm font-label-sm border border-outline-variant mb-3">
+<span class="material-symbols-outlined text-sm" data-icon="how_to_reg">how_to_reg</span>
+<span>PARTISIPASI PUBLIK CEPAT &amp; TEPAT</span>
+</div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-primary tracking-tight">
+          Aksi Cepat Warga: Cara Anda Berkontribusi
+        </h2>
+<p class="text-body-md font-body-md text-on-surface-variant">
+          Laporkan kerusakan dengan 3 langkah sederhana di bawah. Laporan Anda langsung diteruskan ke Balai Pelaksanaan Jalan Nasional (BPJN) setempat.
+        </p>
+</div>
+<!-- 3 Flow Steps Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm relative">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-label-md font-label-md mb-4">
+            01
+          </div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Kenali Gejalanya</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            Perhatikan apakah kerusakan tergolong retak rambut, lubang berbahaya (&gt; 5 cm), amblesan oprit jembatan, atau tiang sandaran pembatas yang patah akibat tabrakan.
+          </p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm relative">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-label-md font-label-md mb-4">
+            02
+          </div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Dokumentasikan &amp; Lokasi</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            Ambil 1 foto tampak jarak dekat dengan objek pembanding (seperti botol/koin) dan 1 foto jarak jauh. Catat patok kilometer terdekat (misal: KM 42+200) atau nyalakan GPS.
+          </p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm relative">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-label-md font-label-md mb-4">
+            03
+          </div>
+<h3 class="text-headline-sm font-headline-sm text-primary mb-2">Kirim Laporan Resmi</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            Gunakan formulir online di portal ini atau aplikasi Jalan Kita. Tim Unit Reaksi Cepat PU akan memverifikasi tingkat keparahan dalam maksimal 12 jam kerja.
+          </p>
+</div>
+</div>
+<!-- Interactive Quick Report Form Card -->
+<div class="max-w-4xl mx-auto bg-surface-container-lowest p-8 md:p-10 rounded-2xl border-2 border-outline-variant shadow-lg">
+<div class="flex items-center justify-between border-b border-outline-variant pb-6 mb-6">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/20 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" data-icon="report_problem">report_problem</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-primary">Formulir Pengaduan Cepat Kerusakan Jalan / Jembatan</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Bantu petugas mendeteksi koordinat kerusakan dengan data presisi</p>
+</div>
+</div>
+<span class="hidden md:inline-block px-3 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 text-label-sm font-label-sm font-bold">
+            SISTEM ONLINE 24 JAM
+          </span>
+</div>
+<form class="space-y-6" onsubmit="event.preventDefault(); alert('Laporan berhasil disimulasikan! Terima kasih atas kontribusi Anda dalam menjaga keselamatan jalan.');">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Tipe Objek -->
+<div>
+<label class="block text-label-md font-label-md text-primary mb-2">Jenis Objek Infrastruktur</label>
+<select class="w-full rounded-lg border-outline-variant bg-surface text-on-surface text-body-md focus:border-primary-container focus:ring-2 focus:ring-primary/20">
+<option>Jalan Nasional / Provinsi</option>
+<option>Jembatan Rangka / Gelagar Beton</option>
+<option>Saluran Drainase Jalan / Gorong-gorong</option>
+<option>Bahu Jalan / Dinding Penahan Tanah (Talud)</option>
+</select>
+</div>
+<!-- Tingkat Keparahan Visual Scale -->
+<div>
+<label class="block text-label-md font-label-md text-primary mb-2">Tingkat Keparahan Berdasarkan Pengamatan</label>
+<select class="w-full rounded-lg border-outline-variant bg-surface text-on-surface text-body-md focus:border-primary-container focus:ring-2 focus:ring-primary/20">
+<option>Grade 1: Retak Rambut &amp; Celah Kecil (Rutin)</option>
+<option>Grade 2: Lubang Sedang (&lt; 5 cm kedalaman)</option>
+<option>Grade 3: Lubang Dalam / Amblas Berbahaya (Mendesak)</option>
+<option>Grade 4: Kerusakan Kritis Rangka/Pilar Jembatan (Darurat Bahaya)</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Lokasi / Ruas Jalan -->
+<div>
+<label class="block text-label-md font-label-md text-primary mb-2">Nama Ruas Jalan / Patok KM</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline" data-icon="pin_drop">pin_drop</span>
+<input class="w-full pl-10 rounded-lg border-outline-variant bg-surface text-on-surface text-body-md focus:border-primary-container focus:ring-2 focus:ring-primary/20" placeholder="Contoh: Jl. Raya Pantura KM 54, dekat Jembatan Kaligawe" required="" type="text"/>
+</div>
+</div>
+<!-- Koordinat GPS Otomatis -->
+<div>
+<label class="block text-label-md font-label-md text-primary mb-2">Titik Koordinat GPS (Opsional)</label>
+<div class="flex gap-2">
+<input class="w-full rounded-lg border-outline-variant bg-surface text-on-surface text-body-md focus:border-primary-container focus:ring-2 focus:ring-primary/20" id="gps-field" placeholder="-6.175392, 106.827153" type="text"/>
+<button class="px-3 py-2 rounded-lg bg-surface-container-high border border-outline-variant hover:bg-surface-variant text-primary text-label-sm font-label-sm whitespace-nowrap flex items-center gap-1" onclick="document.getElementById('gps-field').value='-6.2088, 106.8456 (Akurat 5m)'" type="button">
+<span class="material-symbols-outlined text-sm" data-icon="my_location">my_location</span>
+                  Gunakan GPS
+                </button>
+</div>
+</div>
+</div>
+<!-- Unggah Bukti Foto -->
+<div>
+<label class="block text-label-md font-label-md text-primary mb-2">Foto Bukti Kerusakan di Lapangan</label>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-6 text-center hover:border-primary cursor-pointer transition-colors bg-surface">
+<span class="material-symbols-outlined text-4xl text-outline mb-2" data-icon="add_a_photo">add_a_photo</span>
+<p class="text-body-sm font-body-sm text-primary font-semibold">Klik untuk memilih foto atau seret berkas ke sini</p>
+<p class="text-label-sm font-label-sm text-outline mt-1">Format JPG, PNG hingga 10MB (Sertakan foto jarak jauh &amp; dekat)</p>
+</div>
+</div>
+<!-- Tombol Kirim -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-outline-variant">
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-emerald-700" data-icon="verified_user">verified_user</span>
+<span>Identitas pelapor dijamin kerahasiaannya oleh Undang-Undang KIP.</span>
+</div>
+<button class="w-full sm:w-auto px-8 py-3 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-bold font-label-md text-label-md flex items-center justify-center gap-2 shadow-md transition-all active:scale-95" type="submit">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+<span>Kirim Laporan Pengaduan</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- ARTIKEL & TIPS TERKINI: EDUKASI WARGA & TEKNIK LAPANGAN -->
+<!-- ========================================================================= -->
+<section class="py-16 md:py-20 bg-surface-container-lowest" id="edukasi-warga">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-outline-variant gap-4">
+<div>
+<div class="inline-flex items-center gap-2 text-label-sm font-label-sm text-primary mb-1">
+<span class="material-symbols-outlined text-sm" data-icon="menu_book">menu_book</span>
+<span>PORTAL PENGETAHUAN BINA MARGA</span>
+</div>
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg text-primary tracking-tight">
+            Artikel &amp; Edukasi Rekayasa Sipil Warga
+          </h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1">
+            Wawasan mendalam mengenai sains material jalan, mitigasi beban cuaca ekstrem, dan keterlibatan komunitas lokal.
+          </p>
+</div>
+<a class="inline-flex items-center gap-1.5 text-primary font-bold text-label-md font-label-md hover:underline shrink-0" href="#">
+          Lihat Semua Artikel Perpustakaan <span class="material-symbols-outlined text-base" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- Articles Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Article 1 -->
+<article class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col hover:border-primary hover:shadow-md transition-all">
+<div class="h-48 bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" data-alt="A vivid civil engineering demonstration showing rain water ponding over fresh dark asphalt roadway where a clogged drain causes localized stripping of bitumen. The photo captures clear raindrops, road texture, and a clean concrete curb under cinematic overcast gray lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDQmnjiPaOkjFMb0f7eVZc90GMrZtvxyZpClDD80m2bszfhQClA3BqySpVW-_sx1PIqIoOL66I4HuwZELjXCokeXQ8erLpWnimKVJLUwXFg7caMmGjk28f6cCM5fkVKcGjSvNlR_AOk5fWKSe0m5JbC7pyr5DLMncxcbBUgjuKZ-OkTD2OIVEiu4VnpE4wzDVBpiCClylpX-GYIXAsYXtSZjWNtFNnork0bQznnHwWQW8GM49-pP92vA"/>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-outline mb-2">
+<span>SAINS ASPAL</span>
+<span>•</span>
+<span>5 MENIT BACA</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary hover:text-secondary transition-colors mb-3">
+                Dampak Genangan Air Terhadap Struktur Aspal: Mengapa Selokan Bersih Adalah Kunci
+              </h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-3">
+                Penjelasan ilmiah proses pengelupasan (stripping) saat ikatan perekat aspal dengan batuan agregat hancur akibat tekanan hidrostatik ban kendaraan di atas genangan air hujan.
+              </p>
+</div>
+<div class="pt-4 mt-4 border-t border-outline-variant flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Oleh Ir. Harun Wicaksono, MT</span>
+<span class="text-primary font-bold">Baca →</span>
+</div>
+</div>
+</article>
+<!-- Article 2 -->
+<article class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col hover:border-primary hover:shadow-md transition-all">
+<div class="h-48 bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" data-alt="An imposing steel arch truss bridge spanning across a wide river, viewed from the river bank in early morning sunlight. High technical detail of cross girders, suspension hangers, and concrete abutments surrounded by clean engineering landscaping in civic photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzvH5NWp3sqzCpLidGzSn8ZrLA1BYDyHADdekKtlN5SoXifeJ1lSC_VS1_vOJgn5p-vyetYYMuWn9U9vWm597CTuaIU2aXfTZVsFZr-ELcd2pFtKyMimXNrneTzMsjaUAnxeowjOFHuGCqBvFkMFf-T-zilzUhUcRnBA6h_3UUqGQCuhrNJa6WiWhM_3bBqWDHGwXI5n3zSV_Gu7jhjRBWLCQObRdFiX_CvVqkXrW4rg-ex4z1R04eYQ"/>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-outline mb-2">
+<span>STRUKTUR JEMBATAN</span>
+<span>•</span>
+<span>7 MENIT BACA</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary hover:text-secondary transition-colors mb-3">
+                Mengenal Anatomi Jembatan dan Titik Kritis yang Wajib Diinspeksi Berkala
+              </h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-3">
+                Membedakan superstruktur dan substruktur jembatan. Mengapa pemeriksaan berkala pada perletakan rol sendi dan gelagar induk baja mampu mencegah keruntuhan katastropik.
+              </p>
+</div>
+<div class="pt-4 mt-4 border-t border-outline-variant flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Divisi Jembatan Khusus</span>
+<span class="text-primary font-bold">Baca →</span>
+</div>
+</div>
+</article>
+<!-- Article 3 -->
+<article class="bg-surface rounded-xl border border-outline-variant overflow-hidden flex flex-col hover:border-primary hover:shadow-md transition-all">
+<div class="h-48 bg-surface-dim overflow-hidden">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" data-alt="A collaborative community clean-up initiative near a rural concrete bridge over a river. Local villagers and youth work alongside road technicians in safety vests using rakes and poles to retrieve plastic trash and fallen tree logs from around bridge piers in bright daytime." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrWPyM1xrN1AmECO1-SltyizC2nT-KoLOXFqz5JNilc9EjebX9JJebA9S3M6OWf9qaiaFe8qRm2_Kt9h_RHyViR9EUdvcp76gmJOFffH1ZCWXP7AnU4xCilm-b3qa8nE2xj3muQOiUkyKM8N07pJ35LOYczaU8CujTfF_cv7J3zmMsKjfMExAKz-X7-_pk6QMti-y6BmksUzrMChwjfYMBz5_4ARKVt6kfRMAxH449_V-nRWHfrw9tSg"/>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-outline mb-2">
+<span>PEMBERDAYAAN WARGA</span>
+<span>•</span>
+<span>4 MENIT BACA</span>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary hover:text-secondary transition-colors mb-3">
+                Peran Komunitas Warga dalam Melindungi Jembatan Desa dari Sampah dan Sedimen
+              </h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-3">
+                Kisah sukses aksi gotong royong pembersihan sampah bambu dan kayu di tiang jembatan antar desa sebelum musim hujan deras datang, menyelamatkan akses ekonomi ratusan keluarga.
+              </p>
+</div>
+<div class="pt-4 mt-4 border-t border-outline-variant flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Tim Komunikasi Publik PU</span>
+<span class="text-primary font-bold">Baca →</span>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- EMERGENCY CALL BANNER: SIKAP SIAGA KONEKTIVITAS -->
+<!-- ========================================================================= -->
+<section class="bg-surface-container-high border-y border-outline-variant py-10">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-2xl bg-secondary text-on-secondary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-3xl" data-icon="phone_in_talk">phone_in_talk</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-primary">Pusat Komando Tanggap Darurat Bencana Jalan (Pusdalops)</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Laporkan kondisi darurat jembatan putus, longsoran tebing menutup jalur arteri, atau jembatan amblas.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<a class="px-6 py-3 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-bold font-label-md text-label-md flex items-center gap-2 shadow-md transition-all active:scale-95" href="tel:158">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+<span>Hotline Bebas Pulsa: 158</span>
+</a>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- Footer (Shared Component) -->
+<!-- ========================================================================= -->
+<footer class="bg-primary text-on-primary border-t border-primary-container">
+<div class="max-w-7xl mx-auto px-6 py-12 flex flex-col gap-8">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-outline/30">
+<div>
+<div class="text-headline-md font-headline-md font-extrabold text-on-primary tracking-tight">
+            Bina Marga Sipil
+          </div>
+<p class="text-body-sm font-body-sm text-surface-variant mt-1 max-w-lg">
+            Kementerian Pekerjaan Umum dan Perumahan Rakyat Republik Indonesia. Direktorat Jenderal Bina Marga — Menghubungkan Negeri, Menjaga Mutu Peradaban.
+          </p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded bg-primary-container text-on-primary text-label-sm font-label-sm border border-outline/40">
+<span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+<span>SERVER OPERASIONAL TERINTEGRASI</span>
+</div>
+</div>
+</div>
+<!-- Links Grid from JSON -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-label-sm font-label-sm">
+<div>
+<a class="text-on-primary-container hover:text-on-primary transition-colors duration-150 block py-1" href="#">Standar Teknis PU</a>
+</div>
+<div>
+<a class="text-on-primary-container hover:text-on-primary transition-colors duration-150 block py-1" href="#">Pedoman Pemeliharaan Rutin</a>
+</div>
+<div>
+<a class="text-on-primary-container hover:text-on-primary transition-colors duration-150 block py-1" href="#">Regulasi Jembatan Khusus</a>
+</div>
+<div>
+<a class="text-on-primary-container hover:text-on-primary transition-colors duration-150 block py-1" href="#">Kontak Darurat 24 Jam</a>
+</div>
+<div>
+<a class="text-secondary-fixed underline font-medium block py-1" href="#">Portal Pengaduan Warga</a>
+</div>
+<div>
+<a class="text-on-primary-container hover:text-on-primary transition-colors duration-150 block py-1" href="#">Kebijakan Privasi</a>
+</div>
+</div>
+<!-- Copyright Row -->
+<div class="pt-4 border-t border-outline/20 flex flex-col md:flex-row items-center justify-between text-body-sm font-body-sm text-surface-variant gap-4">
+<p>© 2025 Bina Marga Sipil - Kementerian Pekerjaan Umum. Hak Cipta Dilindungi.</p>
+<div class="flex items-center gap-6 text-label-sm font-label-sm">
+<span>Sistem Pelaporan Terbuka v3.4.1</span>
+<span>ISO 9001:2015 Mutu Penyelenggaraan Jalan</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
